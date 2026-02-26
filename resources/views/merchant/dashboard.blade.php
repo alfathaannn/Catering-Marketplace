@@ -1,6 +1,6 @@
 @extends('layouts.merchant')
 
-@section('title', 'Merchant Dashboard | CaterDash')
+@section('title', 'Merchant Dashboard | Catering Marketplace')
 
 @section('topbar-search')
 <!-- Search bar -->
