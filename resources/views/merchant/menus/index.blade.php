@@ -1,6 +1,6 @@
 @extends('layouts.merchant')
 
-@section('title', 'Menu Management | CaterDash')
+@section('title', 'Menu Management | Catering Marketplace')
 
 @push('styles')
 <style>
