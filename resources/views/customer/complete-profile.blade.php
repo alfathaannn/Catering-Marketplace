@@ -1,6 +1,6 @@
 @extends('layouts.customer')
 
-@section('title', 'Complete Profile | CaterDash')
+@section('title', 'Complete Profile | Catering Marketplace')
 
 @push('styles')
 <style>
