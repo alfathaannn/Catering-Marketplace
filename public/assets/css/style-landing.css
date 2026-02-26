@@ -1,0 +1,272 @@
+/* === GLOBAL CSS — palet putih, dark stone, biru === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pure-white: #ffffff;
+    --off-white: #f8fafc;
+    --stone-100: #e3e5e8;
+    --stone-300: #a0a4ab;
+    --stone-700: #3e4045;
+    --stone-900: #1e1f22;
+    --blue-deep: #1f4a9c;
+    --blue-soft: #e9effa;
+    --blue-outline: #2b5fc2;
+
+    --green-deep: #10b981;
+    --green-soft: #d1fae5;
+    --green-outline: #059669;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    --transition: all 0.18s cubic-bezier(0.2, 0, 0, 1);
+}
+
+body {
+    background-color: var(--off-white);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--stone-900);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 1.5rem;
+}
+
+/* container kaca-stone sederhana */
+.card {
+    background-color: var(--pure-white);
+    border-radius: var(--radius-xl);
+    box-shadow:
+        0 20px 35px -8px rgba(0, 0, 0, 0.06),
+        0 5px 12px -4px rgba(0, 0, 0, 0.02);
+    padding: 3rem 2.5rem;
+    max-width: 720px;
+    width: fit-content;
+    margin: 0 auto;
+    border: 1px solid var(--stone-100);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 30px 45px -12px rgba(30, 31, 34, 0.1);
+    border-color: var(--stone-300);
+}
+
+/* konten tengah sempurna */
+.selection-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+}
+
+/* judul memakai stone dan biru sebagai aksen */
+.panel-headline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.panel-headline h1 {
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--stone-900);
+    line-height: 1.2;
+}
+
+.panel-headline p {
+    font-size: 0.95rem;
+    color: var(--stone-700);
+    font-weight: 400;
+    max-width: 28ch;
+    margin: 0 auto;
+}
+
+.headline-underline {
+    width: 50px;
+    height: 3px;
+    background-color: var(--blue-deep);
+    border-radius: var(--radius-full);
+    margin: 0.5rem auto 0;
+}
+
+/* container kedua tombol — response dan clean */
+.button-duo {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* base button — merchant & customer */
+.btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    padding: 2rem 1.8rem;
+    background-color: var(--pure-white);
+    border: 1.5px solid var(--stone-100);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 12px -6px rgba(30, 31, 34, 0.04);
+    transition: var(--transition);
+}
+
+/* setiap tombol punya ikon kecil dari simple pseudo-element (bukan emoji, hanya bentuk) */
+.btn-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--blue-soft);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.btn-icon::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-color: var(--blue-deep);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+
+/* ikon merchant (serupa bangunan / toko) */
+.btn-merchant .btn-icon::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'%3E%3C/path%3E%3Cpolyline points='9 22 9 12 15 12 15 22'%3E%3C/polyline%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'%3E%3C/path%3E%3Cpolyline points='9 22 9 12 15 12 15 22'%3E%3C/polyline%3E%3C/svg%3E");
+    background-color: var(--blue-deep);
+}
+
+/* ikon customer (sosok / user) */
+.btn-customer .btn-icon {
+    background-color: var(--green-soft);
+}
+.btn-customer .btn-icon::before {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E");
+    background-color: var(--green-deep);
+}
+
+.btn-text {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--stone-900);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.btn-sub {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--stone-700);
+}
+
+/* state hover dan fokus — elegan, biru muncul perlahan */
+.btn:hover .btn-inner {
+    border-color: var(--blue-deep);
+    transform: scale(1.02);
+    box-shadow: 0 14px 24px -12px rgba(31, 74, 156, 0.28);
+}
+
+.btn:hover .btn-icon {
+    background-color: var(--blue-deep);
+}
+
+.btn:hover .btn-icon::before {
+    background-color: var(--pure-white);
+}
+
+.btn:focus-visible {
+    outline: none;
+}
+
+.btn:focus-visible .btn-inner {
+    outline: 2px solid var(--blue-outline);
+    outline-offset: 3px;
+    border-color: transparent;
+}
+
+/* active / click */
+.btn:active .btn-inner {
+    transform: scale(0.99);
+    background-color: var(--blue-soft);
+    border-color: var(--blue-deep);
+    transition: all 0.05s;
+}
+
+/* state hover dan fokus khusus customer (green) */
+.btn-customer:hover .btn-inner {
+    border-color: var(--green-deep);
+    box-shadow: 0 14px 24px -12px rgba(16, 185, 129, 0.28);
+}
+
+.btn-customer:hover .btn-icon {
+    background-color: var(--green-deep);
+}
+
+.btn-customer:hover .btn-icon::before {
+    background-color: var(--pure-white);
+}
+
+.btn-customer:focus-visible .btn-inner {
+    outline: 2px solid var(--green-outline);
+}
+
+.btn-customer:active .btn-inner {
+    background-color: var(--green-soft);
+    border-color: var(--green-deep);
+}
+
+#feedbackText {
+    font-weight: 500;
+}
+
+/* reset / subtle */
+hr {
+    border: none;
+    border-top: 1px solid var(--stone-100);
+    margin: 0.5rem 0;
+}
+
+/* clean dan tidak colorfull, hanya stone & biru */
+.attribution {
+    margin-top: 1.8rem;
+    font-size: 0.7rem;
+    color: var(--stone-300);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}

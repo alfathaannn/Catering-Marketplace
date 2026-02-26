@@ -1,0 +1,373 @@
+/* === variabel global stone & blue === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pure-white: #ffffff;
+    --off-white: #f8fafc;
+    --stone-100: #e3e5e8;
+    --stone-300: #a0a4ab;
+    --stone-700: #3e4045;
+    --stone-900: #1e1f22;
+    --blue-deep: #1f4a9c;
+    --blue-soft: #e9effa;
+    --blue-outline: #2b5fc2;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    --transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+body {
+    background-color: var(--off-white);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--stone-900);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 1rem;
+    margin: 0;
+}
+
+/* main card responsif */
+.auth-card {
+    background-color: var(--pure-white);
+    border-radius: var(--radius-xl);
+    box-shadow:
+        0 20px 35px -8px rgba(0, 0, 0, 0.06),
+        0 5px 12px -4px rgba(0, 0, 0, 0.02);
+    padding: 2rem 1.8rem;
+    max-width: 520px;
+    width: 100%;
+    border: 1px solid var(--stone-100);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card:hover {
+    box-shadow: 0 30px 45px -12px rgba(30, 31, 34, 0.12);
+    border-color: var(--stone-300);
+}
+
+/* header + icon */
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+.auth-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--stone-900);
+}
+.icon-head {
+    font-size: 3rem;
+    color: var(--blue-deep);
+    margin-bottom: 0.2rem;
+}
+.auth-underline {
+    width: 60px;
+    height: 3px;
+    background-color: var(--blue-deep);
+    border-radius: var(--radius-full);
+    margin: 0.2rem auto 0;
+}
+
+/* toggle tabs dengan ikon */
+.toggle-tabs {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--stone-100);
+    padding: 0.4rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+}
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.7rem 0.3rem;
+    border-radius: var(--radius-md);
+    color: var(--stone-700);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.tab-btn .material-icons {
+    font-size: 1.2rem;
+}
+.tab-btn.active {
+    background-color: var(--pure-white);
+    color: var(--blue-deep);
+    box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.04);
+    font-weight: 600;
+}
+
+/* form container menggunakan relative untuk sliding */
+.form-wrapper {
+    position: relative;
+    min-height: 400px; /* stabil, tapi nanti bisa berubah dikit via js */
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+/* kedua form absolute untuk sliding effect */
+.auth-form {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    will-change: transform, opacity;
+    pointer-events: none; /* diatur via GSAP */
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.auth-form.active-form {
+    pointer-events: all;
+    opacity: 1;
+    transform: translateX(0);
+    position: relative; /* override agar tidak absolute ketika active, tapi kita handle GSAP */
+    /* kita biarkan absolute tapi active diatur oleh GSAP */
+}
+
+/* untuk menghindari flicker, kita set base */
+.auth-form {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+/* input groups dengan ikon di dalam? opsional bisa ditambah, tetapi kita beri ruang */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--stone-700);
+    letter-spacing: -0.01em;
+    margin-left: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.input-group label .material-icons {
+    font-size: 1rem;
+    color: var(--blue-deep);
+}
+
+.input-group input {
+    padding: 0.9rem 1rem;
+    background-color: var(--off-white);
+    border: 1.5px solid var(--stone-100);
+    border-radius: var(--radius-md);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.95rem;
+    color: var(--stone-900);
+    transition: var(--transition);
+    outline: none;
+    width: 100%;
+}
+
+.input-group input:hover {
+    border-color: var(--stone-300);
+}
+
+.input-group input:focus {
+    border-color: var(--blue-deep);
+    background-color: var(--pure-white);
+    box-shadow: 0 0 0 4px var(--blue-soft);
+}
+
+/* tambahan wrapper untuk input dengan icon di kanan */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    padding-right: 2.8rem; /* ruang untuk icon toggle */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.8rem;
+    color: var(--stone-300);
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.toggle-password:hover {
+    color: var(--blue-deep);
+}
+
+.name-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.name-row .input-group {
+    flex: 1 1 160px;
+}
+
+.submit-btn {
+    background-color: var(--blue-deep);
+    border: none;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.submit-btn .material-icons {
+    font-size: 1.2rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--blue-outline);
+    box-shadow: 0 8px 18px -10px var(--blue-deep);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    color: var(--stone-700);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.auth-footer a {
+    color: var(--blue-deep);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.auth-footer a:hover {
+    border-bottom-color: var(--blue-deep);
+}
+
+.toast-message {
+    background-color: var(--stone-900);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    opacity: 0;
+    transition:
+        opacity 0.25s,
+        transform 0.25s;
+    z-index: 999;
+    pointer-events: none;
+    border: 1px solid var(--stone-700);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.toast-message.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+.toast-message .material-icons {
+    font-size: 1.2rem;
+}
+
+.invalid-feedback {
+    display: block;
+    font-size: 0.8rem;
+    color: #e3342f;
+    margin-top: 0.25rem;
+}
+
+/* responsif lanjutan */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 1.5rem 1rem;
+    }
+    .auth-header h2 {
+        font-size: 1.8rem;
+    }
+    .name-row {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .toggle-tabs .tab-btn span:last-child {
+        display: inline-block;
+    }
+    .auth-footer {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+}
+@media (max-width: 360px) {
+    .tab-btn .material-icons {
+        display: none;
+    }
+}
+
+.attribution-note {
+    margin-top: 1.8rem;
+    font-size: 0.7rem;
+    color: var(--stone-300);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
